@@ -1,5 +1,23 @@
-<h2> <%= @picture.name %> </h2>
-<p> <%= @picture.description %> </p>
-<%= link_to "Back", root_path %>
-<%= link_to "Edit", edit_picture_path( @picture ) %>
-<%= link_to "Delete", picture_path, method: :delete, data: { confirm: "Are you sure ???"} %>
+
+<div class="posts-wrapper row">
+		<div class="post">
+			<div class ="post-head">
+				<div class="name">
+					<%= @picture.name %> 
+				</div>
+			</div>
+			<div class="image center-block">
+				 <%= link_to (image_tag @picture.image.url(:medium), class:'img-responsive'), picture_path(@picture) %>
+			</div>
+   <p> <div class="caption"> <%= @picture.description %> </div> </p>
+   <div class="text-center edit-links">
+   		<%= link_to "Back", root_path %>
+   		||
+   		<%= link_to "Edit", edit_picture_path(@picture) %>
+   		||
+   		<%= link_to "Delete", picture_path(@picture), method: :delete, data: { confirm: "Are you sure ??" } %>
+
+   	</div>
+</div>
+
+
