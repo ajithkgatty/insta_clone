@@ -1,21 +1,26 @@
 class PicturesController < ApplicationController
 
-   before_action :find_picture, only: [:edit, :update, :destroy, :show]		
+   before_action :find_picture, only: [ :edit, :update, :destroy, :show ]		
+   before_action :allowed_to_modify?, only: [ :edit, :update, :destroy ]
 
   def new
-  	@picture = Picture.new
+  	@picture = current_user.pictures.build
   end
 
 
   def create
-  	@picture = Picture.new(picture_params)
+  	@picture = current_user.pictures.build(picture_params)
   	respond_to do |format|
       if @picture.save
-        format.html { redirect_to picture_path(@picture), notice: "New post is added !!!!" }
+        
+        format.html { redirect_to picture_path(@picture) }
         format.json { render :show, status: :created, location: @picture }
+        flash.now[:succuess] = "New Post has been created successfully !!!"
       else
+        
         format.html { render :new }
         format.json { render json: @pictures.errors, status: :unprocessable_entity }
+        flash.now[:alert] = "Somwthing is wrong in the form. Please check the form !!!"
       end
     end
   end
@@ -56,10 +61,6 @@ class PicturesController < ApplicationController
   end
 
 
-
-
-
-
   private 
   def picture_params
   	params.require(:picture).permit(:name, :description, :image)
@@ -67,5 +68,12 @@ class PicturesController < ApplicationController
 
   def find_picture
   	@picture =  Picture.find(params[:id])
+  end
+
+  def allowed_to_modify?
+    unless @picture.user ==current_user
+      flash[:alert] = "Opppss!!! You must be the owner of this post to perform this operation !!"
+      redirect_to root_path
+    end
   end
 end

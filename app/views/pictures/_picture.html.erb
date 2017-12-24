@@ -1,0 +1,38 @@
+
+<div class="posts-wrapper">
+  <div class="post">
+    <div class="post-head">
+      <div class="thumb-img"></div>
+      <div class="user-name">
+        <h5> <strong> <%= picture.user.username %> </strong> , <i> posted <%= time_ago_in_words(picture.created_at) %> ago </i> </h5>
+      </div>
+    </div>
+    <div class="image center-block">
+      <%= link_to (image_tag picture.image.url(:medium), class:'img-responsive'), picture_path(picture) %>
+    </div>
+    <div class="post-bottom">
+      <div class="caption">
+        <div class="caption-content">
+          <div class="user-name">
+            <%= picture.user.username %>
+          </div>
+          <%= picture.description %>
+        </div>
+        <div class="comments" id="comments_<%= picture.id %>">
+          <% if picture.comments %>
+            <%= render picture.comments, picture: picture %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+    <div class="comment-like-form row">
+      <div class="like-button col-sm-1">
+      </div>
+      <div class="comment-form col-sm-11">
+        <%= form_for [picture, picture.comments.build], remote: true do |f| %>
+          <%= f.text_field :content, placeholder: 'Add a comment...', class: "comment_content", id: "comment_content_#{picture.id}" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
