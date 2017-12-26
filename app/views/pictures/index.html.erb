@@ -3,8 +3,8 @@
 		<%= render 'picture', picture: picture %>
 	
    	<% end %>
-   	<%= paginate @pictures %>
    	<div class="text-center">
+   		<%= paginate @pictures %><br />
    		<%= link_to "Back", root_path %>
    	</div>
 </div>
