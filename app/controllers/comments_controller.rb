@@ -7,7 +7,7 @@ class CommentsController < ApplicationController
 
     if @comment.save
       respond_to do |format|
-      	flash[:success] = "Comment has been deleted!!"
+      	flash[:success] = "Comment has been added !!"
         # format.html { redirect_to root_path }
         format.js
       end
@@ -24,7 +24,8 @@ class CommentsController < ApplicationController
 		@comment = @picture.comments.find(params[:id])
 		if @comment.destroy
 			respond_to do |format|
-				format.html { redirect_to root_path }
+				# format.html { redirect_to root_path }
+				flash[:success] = "Comment has been deleted !!"
         		format.js
       		end
     	else

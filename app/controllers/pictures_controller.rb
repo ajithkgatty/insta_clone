@@ -26,7 +26,7 @@ class PicturesController < ApplicationController
   end
 
   def index
-  	@pictures = Picture.all
+  	@pictures = Picture.all.order('created_at DESC').page params[:page]
   end
 
   def edit
