@@ -1,7 +1,7 @@
 class ProfilesController < ApplicationController
 
 	before_action :find_user
-	before_action :llowed_to_modify?, only: [:edit, :update]
+	before_action :allowed_to_modify?, only: [:edit, :update]
 
   def show
   	begin
