@@ -4,7 +4,7 @@
     <div class="post-head">
       <div class="thumb-img"></div>
       <div class="user-name">
-        <h5> <strong> <%= picture.user.username %> </strong> , <i> posted <%= time_ago_in_words(picture.created_at) %> ago </i> </h5>
+        <h5> <strong> <%= link_to picture.user.username, profile_path(picture.user.username) %> </strong> , <i> posted <%= time_ago_in_words(picture.created_at) %> ago </i> </h5>
       </div>
     </div>
     <div class="image center-block">

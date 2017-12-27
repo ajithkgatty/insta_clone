@@ -1,12 +1,14 @@
-<div class="user-name">
-	<%= comment.user.username %>
+<!-- <div class="user-name"> -->
+	<%#= comment.user.username %>
 	<div class="comment content">
-		<%= comment.content %>
+		<span class="user-name"> <%= link_to comment.user.username, profile_path(comment.user.username) %> </span>:: <%= comment.content %>
 		<% if comment.user ==  current_user %>
-			<%= link_to "Delete", picture_comment_path(picture, comment), method: :delete, data: { confirm: "Are you sure ??", remote: true} %>
+			<div style="float: right">
+				<%= link_to "Delete", picture_comment_path(picture, comment), method: :delete, data: { confirm: "Are you sure ??", remote: true} %> 
+			</div>
 		<% end %>
 	</div>
-</div>
+<!-- </div> -->
 
 
 
