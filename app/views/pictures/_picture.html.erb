@@ -27,7 +27,11 @@
     </div>
     <div class="comment-like-form row">
       <div class="like-button col-sm-1">
+        <%= link_to '', like_picture_path( picture.id ), remote: true, id: "like_#{picture.id}",
+                                                    class: "glyphicon glyphicon-heart-empty" %>
+    <%# end %>
       </div>
+    
       <div class="comment-form col-sm-11">
         <%= form_for [picture, picture.comments.build], remote: true do |f| %>
           <%= f.text_field :content, placeholder: 'Add a comment...', class: "comment_content", id: "comment_content_#{picture.id}" %>

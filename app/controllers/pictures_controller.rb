@@ -60,7 +60,10 @@ class PicturesController < ApplicationController
     end  
   end
 
+  def like
 
+  end
+  
   private 
   def picture_params
   	params.require(:picture).permit(:name, :description, :image)
