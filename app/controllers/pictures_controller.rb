@@ -1,6 +1,6 @@
 class PicturesController < ApplicationController
 
-   before_action :find_picture, only: [ :edit, :update, :destroy, :show ]		
+   before_action :find_picture, only: [ :edit, :update, :destroy, :show, :like ]		
    before_action :allowed_to_modify?, only: [ :edit, :update, :destroy ]
 
   def new
@@ -61,7 +61,12 @@ class PicturesController < ApplicationController
   end
 
   def like
-
+    if @picture.liked_by current_user
+      respond_to do |format|
+        format.html { redirect_back( fallback_location: root_path ) }
+        format.js
+      end  
+    end
   end
   
   private 

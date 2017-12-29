@@ -1,4 +1,5 @@
 class Picture < ApplicationRecord
+	acts_as_votable
 	validates :name, presence: true
 	validates :description, presence: true
 	validates :image, presence: true

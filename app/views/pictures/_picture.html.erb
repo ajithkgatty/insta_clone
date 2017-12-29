@@ -11,6 +11,7 @@
       <%= link_to (image_tag picture.image.url(:medium), class:'img-responsive'), picture_path(picture) %>
     </div>
     <div class="post-bottom">
+      <%= render 'pictures/likes', picture: picture %> 
       <div class="caption">
         <div class="caption-content">
           <div class="user-name">
