@@ -2,6 +2,7 @@ class PicturesController < ApplicationController
 
    before_action :find_picture, only: [ :edit, :update, :destroy, :show, :like ]		
    before_action :allowed_to_modify?, only: [ :edit, :update, :destroy ]
+   # acts_as_votable
 
   def new
   	@picture = current_user.pictures.build

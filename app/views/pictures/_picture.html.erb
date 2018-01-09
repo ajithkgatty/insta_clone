@@ -29,7 +29,7 @@
     <div class="comment-like-form row">
       <div class="like-button col-sm-1">
         <%= link_to '', like_picture_path( picture.id ), remote: true, id: "like_#{picture.id}",
-                                                    class: "glyphicon glyphicon-heart-empty" %>
+                                                    class: "glyphicon #{ liked_picture picture}" %>
     <%# end %>
       </div>
     

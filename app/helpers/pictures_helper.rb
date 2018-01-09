@@ -12,10 +12,17 @@ module PicturesHelper
 	    end
   end
 
+  def liked_picture picture
+  	return 'glyphicon-heart' if current_user.voted_for? picture
+  	'glyphicon-heart-empty'
+  end
+
   private
 
-  def like_plural(votes)
-    return ' like this' if votes.count > 1
-    ' likes this'
-  end
+	  def like_plural(votes)
+	    return ' like this' if votes.count > 1
+	    ' likes this'
+	  end
+
+
 end
