@@ -1,1 +1,6 @@
+
+$('#like_<%= @picture.id %>').attr('href', '/pictures/<%= @picture.id %>/unlike');
 $("#like_<%= @picture.id %>").removeClass('glyphicon-heart-empty').addClass('glyphicon-heart');
+$("#likes_<%= @picture.id %>").html("<%= j (render partial: 'pictures/likes', locals: { picture: @picture} ) %>");
+
+

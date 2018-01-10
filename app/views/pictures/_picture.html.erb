@@ -11,7 +11,9 @@
       <%= link_to (image_tag picture.image.url(:medium), class:'img-responsive'), picture_path(picture) %>
     </div>
     <div class="post-bottom">
+
       <%= render 'pictures/likes', picture: picture %> 
+
       <div class="caption">
         <div class="caption-content">
           <div class="user-name">
@@ -28,8 +30,14 @@
     </div>
     <div class="comment-like-form row">
       <div class="like-button col-sm-1">
-        <%= link_to '', like_picture_path( picture.id ), remote: true, id: "like_#{picture.id}",
-                                                    class: "glyphicon #{ liked_picture picture}" %>
+          <% if !current_user.voted_for? picture %>
+            <%= link_to '', like_picture_path( picture.id ), remote: true, id: "like_#{picture.id}",
+                                                    class: "glyphicon #{ liked_picture picture }" %>
+          <% else %>
+            <%= link_to '', unlike_picture_path( picture.id ), remote: true, id: "like_#{picture.id}",
+                                                    class: "glyphicon #{ liked_picture picture }" %>
+          <% end %>
+
     <%# end %>
       </div>
     

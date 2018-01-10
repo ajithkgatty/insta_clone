@@ -1,6 +1,6 @@
 class PicturesController < ApplicationController
 
-   before_action :find_picture, only: [ :edit, :update, :destroy, :show, :like ]		
+   before_action :find_picture, only: [ :edit, :update, :destroy, :show, :like, :unlike ]		
    before_action :allowed_to_modify?, only: [ :edit, :update, :destroy ]
    # acts_as_votable
 
@@ -63,6 +63,15 @@ class PicturesController < ApplicationController
 
   def like
     if @picture.liked_by current_user
+      respond_to do |format|
+        format.html { redirect_back( fallback_location: root_path ) }
+        format.js
+      end  
+    end
+  end
+
+  def unlike
+    if @picture.unliked_by current_user
       respond_to do |format|
         format.html { redirect_back( fallback_location: root_path ) }
         format.js
