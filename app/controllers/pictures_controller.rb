@@ -2,6 +2,7 @@ class PicturesController < ApplicationController
 
    before_action :find_picture, only: [ :edit, :update, :destroy, :show, :like, :unlike ]		
    before_action :allowed_to_modify?, only: [ :edit, :update, :destroy ]
+   include NotificationsHelper
    # acts_as_votable
 
   def new
@@ -63,6 +64,7 @@ class PicturesController < ApplicationController
 
   def like
     if @picture.liked_by current_user
+      create_notification @picture
       respond_to do |format|
         format.html { redirect_back( fallback_location: root_path ) }
         format.js

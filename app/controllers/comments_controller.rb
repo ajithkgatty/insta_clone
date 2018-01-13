@@ -1,11 +1,13 @@
 class CommentsController < ApplicationController
 	before_action :fetch_picture
+	include NotificationsHelper
 
 	def create
     @comment = @picture.comments.build(comment_params)
     @comment.user_id = current_user.id
 
     if @comment.save
+      create_notification(@picture, @comment)		
       respond_to do |format|
       	flash[:success] = "Comment has been added !!"
         # format.html { redirect_to root_path }
@@ -37,7 +39,7 @@ class CommentsController < ApplicationController
 
 
 
-	private
+private
 	def comment_params
 		params.require(:comment).permit(:content)	
 	end
@@ -45,4 +47,6 @@ class CommentsController < ApplicationController
 	def fetch_picture
 		@picture = Picture.find(params[:picture_id])
 	end
+
+	
 end

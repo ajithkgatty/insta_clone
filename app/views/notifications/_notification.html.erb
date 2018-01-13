@@ -1,0 +1,12 @@
+<div class="container">
+	<div class="row">
+		<div class="col-md-6 col-md-offset-3">
+			<ul class="notification-index-list">
+				<li>
+					<%= link_to "#{notification.notified_by.username} has #{notification.notice_type}ed on your picture", 
+						link_through_path(notification) %>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>

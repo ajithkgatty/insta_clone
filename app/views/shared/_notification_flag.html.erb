@@ -1,0 +1,5 @@
+<!-- <div class='dropdown notification-dropdown'> -->
+<li>
+ <%= link_to current_user.notifications.where(read: false).count, notifications_path, remote: true, class: "glyphicon glyphicon-flag" %> 
+</li>
+<!-- </div> -->
